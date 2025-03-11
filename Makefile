@@ -7,6 +7,9 @@ all: build
 build:
 	GOOS=darwin GOARCH=arm64 go build -o bin/$(BIN) src/*.go
 
+wrapper:
+	GOOS=darwin GOARCH=arm64 go build -o bin/run_wrap wrap/*.go
+
 # Clean binaries
 clean:
 	rm -f $(BIN)
