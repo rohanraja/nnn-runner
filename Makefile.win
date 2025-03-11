@@ -1,0 +1,12 @@
+# Output binary name
+BIN=nnn.exe
+
+all: build
+
+# Cross-compile for Windows 64-bit
+build:
+	GOOS=windows GOARCH=amd64 go build -o $(BIN) *.go
+
+# Clean binaries
+clean:
+	rm -f $(BIN)
