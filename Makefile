@@ -1,7 +1,7 @@
 # Output binary name
 BIN=nnn
 
-all: build
+all: build wrapper
 
 # Build for macOS/Linux
 build:

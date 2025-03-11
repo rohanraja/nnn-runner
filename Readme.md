@@ -1,4 +1,4 @@
-
+## Tasks
 
 ## API
 
@@ -26,3 +26,21 @@ CMD: <command that was run including params>
 StartTime: <Datetime stamp>
 EndTime: <Datetime stamp>
 Status: Running/Completed/Error
+
+
+## Dev info
+
+### Building
+
+```sh
+# Mac/Linux
+make build
+make wrapper
+
+
+# Windows
+make -f Makefile.win wrapper
+make -f Makefile.win build
+
+# Add ./bin to PATH
+```

@@ -27,6 +27,7 @@ func main() {
     cmd.Stdout, _ = os.OpenFile(stdoutFile, os.O_APPEND|os.O_CREATE|os.O_WRONLY, 0644)
     cmd.Stderr, _ = os.OpenFile(stderrFile, os.O_APPEND|os.O_CREATE|os.O_WRONLY, 0644)
 
+    startTime := time.Now()
     err := cmd.Start()
     if err != nil {
         fmt.Println("Error starting command:", err)
@@ -34,13 +35,20 @@ func main() {
     }
 
     cmd.Wait()
-    endTime := time.Now().Format(time.RFC3339)
+    endTime := time.Now()
+    duration := endTime.Sub(startTime)
     status := "Completed"
     if cmd.ProcessState.ExitCode() != 0 {
         status = "Error"
     }
     cmdStr := fmt.Sprintf("%s %s", command, strings.Join(args, " "))
-    infoContent := fmt.Sprintf("CMD: %s\nStartTime: %s\nEndTime: %s\nStatus: %s\n",
-        cmdStr, time.Now().Format(time.RFC3339), endTime, status)
+    infoContent := fmt.Sprintf("CMD: %s\nStartTime: %s\nEndTime: %s\nDuration: %s\nStatus: %s\n",
+        cmdStr, startTime.Format(time.RFC3339), endTime.Format(time.RFC3339), formatDuration(duration), status)
     os.WriteFile(infoFile, []byte(infoContent), 0644)
+}
+
+func formatDuration(d time.Duration) string {
+    minutes := int(d.Minutes())
+    seconds := int(d.Seconds()) % 60
+    return fmt.Sprintf("%dm %ds", minutes, seconds)
 }

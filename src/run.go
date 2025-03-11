@@ -10,31 +10,11 @@ import (
 	"time"
 )
 
-const runsDir = "runs"
 
 func ensureDir(path string) {
     if _, err := os.Stat(path); os.IsNotExist(err) {
         os.Mkdir(path, 0755)
     }
-}
-
-func getNextRunID() int {
-    files, err := os.ReadDir(runsDir)
-    if err != nil {
-        fmt.Println("Error reading runs directory:", err)
-        return 1
-    }
-
-    maxID := 0
-    for _, file := range files {
-        if file.IsDir() {
-            id, err := strconv.Atoi(file.Name())
-            if err == nil && id > maxID {
-                maxID = id
-            }
-        }
-    }
-    return maxID + 1
 }
 
 func createRunFiles(runID int, command string, args []string) (string, error) {

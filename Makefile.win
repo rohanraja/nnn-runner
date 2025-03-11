@@ -1,11 +1,14 @@
 # Output binary name
 BIN=nnn.exe
 
-all: build
+all: build wrapper
 
 # Cross-compile for Windows 64-bit
 build:
 	GOOS=windows GOARCH=amd64 go build -o bin/$(BIN) src/*.go
+
+wrapper:
+	GOOS=windows GOARCH=amd64 go build -o bin/run_wrap.exe wrap/*.go
 
 # Clean binaries
 clean:
