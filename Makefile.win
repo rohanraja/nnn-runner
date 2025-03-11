@@ -5,7 +5,7 @@ all: build
 
 # Cross-compile for Windows 64-bit
 build:
-	GOOS=windows GOARCH=amd64 go build -o $(BIN) *.go
+	GOOS=windows GOARCH=amd64 go build -o bin/$(BIN) src/*.go
 
 # Clean binaries
 clean:

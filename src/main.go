@@ -26,6 +26,6 @@ func main() {
 	case "status":
 		CheckStatus()
 	default:
-		fmt.Println("Unknown command:", os.Args[1])
+		RunCommand(os.Args[1], os.Args[2:]...)
 	}
 }
