@@ -11,6 +11,7 @@ func main() {
         fmt.Println("Usage:")
         fmt.Println("  run <command>   - Run a command in background")
         fmt.Println("  logs [runID]    - Show logs for a specific run ID or the latest run if no ID is provided")
+        fmt.Println("  watch [runID]   - Watch logs for a specific run ID or the latest run if no ID is provided")
         fmt.Println("  status          - Check process status")
         return
     }
@@ -32,6 +33,17 @@ func main() {
             CheckLogs(runID)
         } else {
             CheckLogs()
+        }
+    case "watch":
+        if len(os.Args) > 2 {
+            runID, err := strconv.Atoi(os.Args[2])
+            if err != nil {
+                fmt.Println("Invalid run ID:", os.Args[2])
+                return
+            }
+            WatchLogs(runID)
+        } else {
+            WatchLogs()
         }
     case "status":
         CheckStatus()
