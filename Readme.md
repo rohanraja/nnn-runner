@@ -72,7 +72,7 @@ wget https://github.com/rohanraja/nnn-runner/releases/download/v1.0.0/run_wrap_a
 To install the latest version on Windows, run the following command in the command prompt:
 
 ```sh
-powershell -ExecutionPolicy Bypass -Command "Invoke-WebRequest -Uri https://raw.githubusercontent.com/rohanraja/nnn-runner/main/scripts/install_win.ps1 -OutFile install_win.ps1; .\install_win.ps1"
+powershell -ExecutionPolicy Bypass -Command "Invoke-WebRequest -Uri https://raw.githubusercontent.com/rohanraja/nnn-runner/master/scripts/install_win.ps1 -OutFile install_win.ps1; .\install_win.ps1"
 ```
 
 This command downloads the `install_win.ps1` script from the repository and executes it to install the tool.
